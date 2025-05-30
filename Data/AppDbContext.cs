@@ -12,6 +12,7 @@ namespace FileStorageService.Data
         public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options) { }
 
-        public DbSet<FileMetadata> FileMetadatas { get; set; }
+public DbSet<FileMetadata> Files { get; set; }
+
     }
 }

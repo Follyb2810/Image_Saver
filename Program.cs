@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using FileStorageService.Data;
 
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container
@@ -12,9 +13,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// builder.Services.AddDbContext<AppDbContext>(options =>
+//     options.UseMySql(builder.Configuration.GetConnectionString("CodelineConnection"),
+//     new MySqlServerVersion(new Version(8, 0, 30))));
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseMySql(builder.Configuration.GetConnectionString("CodelineConnection"),
-    new MySqlServerVersion(new Version(8, 0, 30))));
+options.UseSqlite("Data Source=filestorage.db")); 
+    // optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=MyDatabase;Trusted_Connection=True;"));
+
 
 
 // Configure file upload limits

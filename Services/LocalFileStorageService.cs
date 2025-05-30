@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FileStorageService.Models;
+using FileStorageService.Data;
 using Microsoft.Extensions.Options;
 using System.Text.Json;
+using Microsoft.EntityFrameworkCore;
 
 namespace FileStorageService.Services
 {
@@ -227,7 +229,7 @@ namespace FileStorageService.Services
         private async Task SaveMetadataAsync(FileMetadata metadata)
         {
             metadata.Url = GenerateUrl(metadata.Id);
-            _dbContext.FileMetadatas.Add(metadata);
+            _dbContext.Files.Add(metadata);
             await _dbContext.SaveChangesAsync();
             // var metadataFile = Path.Combine(_metadataPath, $"{metadata.Id}.json");
             // var json = JsonSerializer.Serialize(metadata, new JsonSerializerOptions { WriteIndented = true });
