@@ -1,0 +1,15 @@
+const formData = new FormData();
+formData.append('file', fileInput.files[0]);
+
+const response = await fetch('/api/files/upload', {
+  method: 'POST',
+  body: formData
+});
+
+const result = await response.json();
+console.log('File URL:', result.url);
+
+const response = await fetch('/api/files/upload/transform?width=300&height=200&format=webp&quality=80', {
+  method: 'POST',
+  body: formData
+});
